@@ -146,6 +146,13 @@
     datePicker.delegate = self;
     datePicker.datePickerType = PGPickerViewType3;
     datePicker.datePickerMode = PGDatePickerModeDateHourMinuteSecond;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    
+    datePicker.minimumDate = [dateFormatter dateFromString: @"2018-12-09 05:04:23"];
+    datePicker.maximumDate = [dateFormatter dateFromString: @"2018-12-12 05:04:23"];
+
     [self presentViewController:datePickManager animated:false completion:nil];
     
 //    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
