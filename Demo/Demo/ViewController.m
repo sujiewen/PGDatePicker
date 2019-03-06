@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "PGDatePickManager.h"
+#import "CustomPGDatePickerManager.h"
 
 @interface ViewController ()<PGDatePickerDelegate>
 
@@ -31,7 +32,7 @@
     datePicker.showUnit = PGShowUnitTypeNone;
 //    datePicker.isHiddenMiddleText = false;
     datePicker.delegate = self;
-    datePicker.datePickerType = PGPickerViewType3;
+    datePicker.datePickerType = PGDatePickerType3;
     datePicker.datePickerMode = PGDatePickerModeYear;
     [self presentViewController:datePickManager animated:false completion:nil];
     
@@ -57,7 +58,7 @@
     PGDatePicker *datePicker = datePickManager.datePicker;
     datePicker.isHiddenMiddleText = false;
     datePicker.delegate = self;
-    datePicker.datePickerType = PGPickerViewType2;
+    datePicker.datePickerType = PGDatePickerType2;
     datePicker.datePickerMode = PGDatePickerModeYearAndMonth;
     [self presentViewController:datePickManager animated:false completion:nil];
 
@@ -79,7 +80,7 @@
     datePickManager.isShadeBackgroud = true;
     PGDatePicker *datePicker = datePickManager.datePicker;
     datePicker.delegate = self;
-    datePicker.datePickerType = PGPickerViewType3;
+    datePicker.datePickerType = PGDatePickerType3;
     datePicker.isHiddenMiddleText = false;
     datePicker.datePickerMode = PGDatePickerModeDate;
     [self presentViewController:datePickManager animated:false completion:nil];
@@ -99,11 +100,14 @@
  */
 - (IBAction)dateHourHandler:(UIButton *)sender {
     PGDatePickManager *datePickManager = [[PGDatePickManager alloc]init];
+    
     datePickManager.isShadeBackgroud = true;
     PGDatePicker *datePicker = datePickManager.datePicker;
     datePicker.delegate = self;
     datePicker.datePickerMode = PGDatePickerModeDateHour;
     [self presentViewController:datePickManager animated:false completion:nil];
+    
+    datePickManager.headerHeight = 50;
     
 //    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
 //    dateFormatter.dateFormat = @"yyyy-MM-dd HH";
@@ -123,7 +127,7 @@
     datePickManager.isShadeBackgroud = true;
     PGDatePicker *datePicker = datePickManager.datePicker;
     datePicker.delegate = self;
-    datePicker.datePickerType = PGPickerViewType2;
+    datePicker.datePickerType = PGDatePickerType2;
     datePicker.datePickerMode = PGDatePickerModeDateHourMinute;
     [self presentViewController:datePickManager animated:false completion:nil];
     
@@ -141,28 +145,24 @@
  年月日时分秒
  */
 - (IBAction)dateHourMinuteSecondHandler:(UIButton *)sender {
-    PGDatePickManager *datePickManager = [[PGDatePickManager alloc]init];
+    CustomPGDatePickerManager *datePickManager = [[CustomPGDatePickerManager alloc]init];
+    datePickManager.finishIntervalTimeBlock = ^(NSString * _Nonnull strStartTime, NSString * _Nonnull strEndTime) {
+        NSLog(@"strStartTime=%@,,strEndTime=%@",strStartTime,strEndTime);
+    };
+    datePickManager.headerViewBackgroundColor = [UIColor whiteColor];
     PGDatePicker *datePicker = datePickManager.datePicker;
-    datePicker.delegate = self;
-    datePicker.datePickerType = PGPickerViewType3;
-    datePicker.datePickerMode = PGDatePickerModeDateHourMinuteSecond;
+//    datePicker.delegate = self;
+    datePicker.datePickerType = PGDatePickerType3;
+    datePicker.datePickerMode = PGDatePickerModeDate;
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     
-    datePicker.minimumDate = [dateFormatter dateFromString: @"2018-12-09 05:04:23"];
-    datePicker.maximumDate = [dateFormatter dateFromString: @"2018-12-12 05:04:23"];
+//    datePicker.minimumDate = [dateFormatter dateFromString: @"2018-12-09 05:04:23"];
+//    datePicker.maximumDate = [dateFormatter dateFromString: @"2018-12-12 05:04:23"];
 
     [self presentViewController:datePickManager animated:false completion:nil];
-    
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-//    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    
-//    datePicker.minimumDate = [dateFormatter dateFromString: @"2018-02-01 05:04:23"];
-//    datePicker.maximumDate = [dateFormatter dateFromString: @"2028-02-01 05:04:23"];
-    
-//    NSDate *date = [dateFormatter dateFromString: @"2020-02-01 05:04:23"];
-//    [datePicker setDate:date animated: true];
+
 }
 
 /**
@@ -173,7 +173,7 @@
     datePickManager.isShadeBackgroud = true;
     PGDatePicker *datePicker = datePickManager.datePicker;
     datePicker.delegate = self;
-    datePicker.datePickerType = PGPickerViewType1;
+    datePicker.datePickerType = PGDatePickerType1;
     datePicker.isHiddenMiddleText = true;
     datePicker.datePickerMode = PGDatePickerModeMonthDay;
     [self presentViewController:datePickManager animated:false completion:nil];
@@ -196,7 +196,7 @@
     datePickManager.isShadeBackgroud = true;
     PGDatePicker *datePicker = datePickManager.datePicker;
     datePicker.delegate = self;
-    datePicker.datePickerType = PGPickerViewType1;
+    datePicker.datePickerType = PGDatePickerType1;
     datePicker.isHiddenMiddleText = true;
     datePicker.datePickerMode = PGDatePickerModeMonthDayHour;
     [self presentViewController:datePickManager animated:false completion:nil];
@@ -219,7 +219,7 @@
     datePickManager.isShadeBackgroud = true;
     PGDatePicker *datePicker = datePickManager.datePicker;
     datePicker.delegate = self;
-    datePicker.datePickerType = PGPickerViewType1;
+    datePicker.datePickerType = PGDatePickerType1;
     datePicker.isHiddenMiddleText = true;
     datePicker.datePickerMode = PGDatePickerModeMonthDayHourMinute;
     [self presentViewController:datePickManager animated:false completion:nil];
@@ -242,7 +242,7 @@
     datePickManager.isShadeBackgroud = true;
     PGDatePicker *datePicker = datePickManager.datePicker;
     datePicker.delegate = self;
-    datePicker.datePickerType = PGPickerViewType1;
+    datePicker.datePickerType = PGDatePickerType1;
     datePicker.isHiddenMiddleText = true;
     datePicker.datePickerMode = PGDatePickerModeMonthDayHourMinuteSecond;
     [self presentViewController:datePickManager animated:false completion:nil];
