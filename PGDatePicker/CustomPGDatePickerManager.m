@@ -118,16 +118,18 @@
     if (@available(iOS 11.0, *)) {
         bottom = self.view.safeAreaInsets.bottom;
     }
+    
     CGFloat rowHeight = self.datePicker.rowHeight;
     CGFloat headerViewHeight = self.headerHeight;
-    CGFloat contentViewHeight = rowHeight * 5 + headerViewHeight * 2;
-    CGFloat datePickerHeight = contentViewHeight - headerViewHeight * 2 - bottom;
+    CGFloat intervalHeaderViewHeight = self.headerHeight + 10;
+    CGFloat contentViewHeight = rowHeight * 5 + headerViewHeight + intervalHeaderViewHeight;
+    CGFloat datePickerHeight = contentViewHeight - headerViewHeight - intervalHeaderViewHeight - bottom;
     CGRect contentViewFrame = CGRectMake(0,
                                          self.view.bounds.size.height - contentViewHeight,
                                          self.view.bounds.size.width,
                                          contentViewHeight);
     CGRect headerViewFrame = CGRectMake(0, 0, self.view.bounds.size.width, headerViewHeight);
-    CGRect intervalHeaderViewFrame = CGRectMake(0, CGRectGetMaxY(headerViewFrame), self.view.bounds.size.width, headerViewHeight);
+    CGRect intervalHeaderViewFrame = CGRectMake(0, CGRectGetMaxY(headerViewFrame), self.view.bounds.size.width, intervalHeaderViewHeight);
     
     CGRect datePickerFrame = CGRectMake(0,
                                         CGRectGetMaxY(intervalHeaderViewFrame),
@@ -142,12 +144,14 @@
     self.intervalTimeHeaderView.frame = intervalHeaderViewFrame;
     self.datePicker.frame = datePickerFrame;
     self.headerView.backgroundColor = self.headerViewBackgroundColor;
+    self.intervalTimeHeaderView.backgroundColor = self.headerViewBackgroundColor;
     [UIView animateWithDuration:0.2 animations:^{
         if (self.isShadeBackgroud) {
             self.dismissView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
         }
         self.contentView.frame = contentViewFrame;
         self.headerView.frame = headerViewFrame;
+        self.intervalTimeHeaderView.frame = intervalHeaderViewFrame;
         self.datePicker.frame = datePickerFrame;
     }];
 }

@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "PGDatePickManager.h"
-//#import "CustomPGDatePickerManager.h"
+#import "CustomPGDatePickerManager.h"
 
 @interface ViewController ()<PGDatePickerDelegate>
 
@@ -147,32 +147,24 @@
  年月日时分秒
  */
 - (IBAction)dateHourMinuteSecondHandler:(UIButton *)sender {
-//    CustomPGDatePickerManager *datePickManager = [[CustomPGDatePickerManager alloc]init];
-//    datePickManager.finishIntervalTimeBlock = ^(NSString * _Nonnull strStartTime, NSString * _Nonnull strEndTime) {
-//        NSLog(@"strStartTime=%@,,strEndTime=%@",strStartTime,strEndTime);
-//    };
-//    datePickManager.headerViewBackgroundColor = [UIColor whiteColor];
-//    PGDatePicker *datePicker = datePickManager.datePicker;
-//<<<<<<< HEAD
-////    datePicker.delegate = self;
-//    datePicker.datePickerType = PGDatePickerType3;
-//    datePicker.datePickerMode = PGDatePickerModeDate;
-//    datePicker.middleTextColor = [UIColor redColor];
-//=======
-//    datePicker.delegate = self;
-//    datePicker.datePickerType = PGDatePickerTypeVertical;
-//    datePicker.datePickerMode = PGDatePickerModeDateHourMinuteSecond;
-//    [self presentViewController:datePickManager animated:false completion:nil];
-//
-////    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-////    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-//>>>>>>> 8e3f64c14694f7ced802edfaeadc94bbef66fa27
-//
+    CustomPGDatePickerManager *datePickManager = [[CustomPGDatePickerManager alloc]init];
+    datePickManager.finishIntervalTimeBlock = ^(NSString * _Nonnull strStartTime, NSString * _Nonnull strEndTime) {
+        NSLog(@"strStartTime=%@,,strEndTime=%@",strStartTime,strEndTime);
+    };
+    datePickManager.headerViewBackgroundColor = [UIColor whiteColor];
+    PGDatePicker *datePicker = datePickManager.datePicker;
+    datePicker.datePickerType = PGDatePickerTypeVertical;
+    datePicker.datePickerMode = PGDatePickerModeDateHourMinuteSecond;
+//    //设置选中行的字体颜色
+//    datePicker.textColorOfSelectedRow = [UIColor redColor];
+    [self presentViewController:datePickManager animated:false completion:nil];
+
+
 //    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
 //    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
 //
-//    datePicker.minimumDate = [dateFormatter dateFromString: @"2018-12-09 05:04:23"];
-//    datePicker.maximumDate = [dateFormatter dateFromString: @"2018-12-12 05:04:23"];
+////    datePicker.minimumDate = [dateFormatter dateFromString: @"2018-12-09 05:04:23"];
+////    datePicker.maximumDate = [dateFormatter dateFromString: @"2018-12-12 05:04:23"];
 //
 //    [self presentViewController:datePickManager animated:false completion:nil];
 

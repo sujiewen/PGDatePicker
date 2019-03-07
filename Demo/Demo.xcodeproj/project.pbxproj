@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1EDA25BA09FE89D7BDAF0AEA /* libPods-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C1AD5D00F6F1B3FE88BE451 /* libPods-Demo.a */; };
+		6B25BEFF2231035C00623801 /* CustomPGDatePickManagerHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B25BEFA2231035C00623801 /* CustomPGDatePickManagerHeaderView.m */; };
+		6B25BF002231035C00623801 /* CustomPGDatePickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B25BEFB2231035C00623801 /* CustomPGDatePickerManager.m */; };
+		6B25BF012231035C00623801 /* CustomPGDatePickManagerIntervalTimeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B25BEFD2231035C00623801 /* CustomPGDatePickManagerIntervalTimeHeaderView.m */; };
 		862DEB861F395BEC00B5AB4C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 862DEB851F395BEC00B5AB4C /* main.m */; };
 		862DEB891F395BEC00B5AB4C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 862DEB881F395BEC00B5AB4C /* AppDelegate.m */; };
 		862DEB8C1F395BEC00B5AB4C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 862DEB8B1F395BEC00B5AB4C /* ViewController.m */; };
@@ -55,6 +58,12 @@
 
 /* Begin PBXFileReference section */
 		5B3322A50C89EB8BE4072C04 /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
+		6B25BEF92231035B00623801 /* CustomPGDatePickerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPGDatePickerManager.h; sourceTree = "<group>"; };
+		6B25BEFA2231035C00623801 /* CustomPGDatePickManagerHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPGDatePickManagerHeaderView.m; sourceTree = "<group>"; };
+		6B25BEFB2231035C00623801 /* CustomPGDatePickerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPGDatePickerManager.m; sourceTree = "<group>"; };
+		6B25BEFC2231035C00623801 /* CustomPGDatePickManagerHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPGDatePickManagerHeaderView.h; sourceTree = "<group>"; };
+		6B25BEFD2231035C00623801 /* CustomPGDatePickManagerIntervalTimeHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPGDatePickManagerIntervalTimeHeaderView.m; sourceTree = "<group>"; };
+		6B25BEFE2231035C00623801 /* CustomPGDatePickManagerIntervalTimeHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPGDatePickManagerIntervalTimeHeaderView.h; sourceTree = "<group>"; };
 		860397801FD7D30300128356 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		862DEB811F395BEC00B5AB4C /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		862DEB851F395BEC00B5AB4C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -187,6 +196,12 @@
 		866BE8CB205F5BAD001943C0 /* PGDatePicker */ = {
 			isa = PBXGroup;
 			children = (
+				6B25BEF92231035B00623801 /* CustomPGDatePickerManager.h */,
+				6B25BEFB2231035C00623801 /* CustomPGDatePickerManager.m */,
+				6B25BEFC2231035C00623801 /* CustomPGDatePickManagerHeaderView.h */,
+				6B25BEFA2231035C00623801 /* CustomPGDatePickManagerHeaderView.m */,
+				6B25BEFE2231035C00623801 /* CustomPGDatePickManagerIntervalTimeHeaderView.h */,
+				6B25BEFD2231035C00623801 /* CustomPGDatePickManagerIntervalTimeHeaderView.m */,
 				866BE8CC205F5BAD001943C0 /* NSBundle+PGDatePicker.h */,
 				866BE8CD205F5BAD001943C0 /* NSBundle+PGDatePicker.m */,
 				866BE8D0205F5BAD001943C0 /* NSDate+PGCategory.h */,
@@ -345,8 +360,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8680B24B207B9C69003DA00D /* PGDatePicker+MonthDayHour.m in Sources */,
+				6B25BF012231035C00623801 /* CustomPGDatePickManagerIntervalTimeHeaderView.m in Sources */,
 				C82C7B072064FB0E000C9604 /* PGDatePicker+DateHour.m in Sources */,
 				866BE907205F5BAD001943C0 /* PGDatePickManagerHeaderView.m in Sources */,
+				6B25BF002231035C00623801 /* CustomPGDatePickerManager.m in Sources */,
 				862DEB8C1F395BEC00B5AB4C /* ViewController.m in Sources */,
 				866BE8FE205F5BAD001943C0 /* PGDatePicker+MinuteAndSecond.m in Sources */,
 				866BE8FF205F5BAD001943C0 /* PGDatePicker+Time.m in Sources */,
@@ -364,6 +381,7 @@
 				866BE8FB205F5BAD001943C0 /* PGDatePicker+DateHourMinute.m in Sources */,
 				8680B24E207BA1B4003DA00D /* PGDatePicker+MonthDayHourMinute.m in Sources */,
 				866BE8FD205F5BAD001943C0 /* PGDatePicker+Logic.m in Sources */,
+				6B25BEFF2231035C00623801 /* CustomPGDatePickManagerHeaderView.m in Sources */,
 				866BE900205F5BAD001943C0 /* PGDatePicker+TimeAndSecond.m in Sources */,
 				862DEB861F395BEC00B5AB4C /* main.m in Sources */,
 				866BE8F8205F5BAD001943C0 /* PGDatePicker+Common.m in Sources */,

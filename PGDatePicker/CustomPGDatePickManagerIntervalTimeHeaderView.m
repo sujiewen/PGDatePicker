@@ -67,11 +67,11 @@
     _startTimeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_startTimeButton setTitleColor:[UIColor pg_colorWithHexString:@"#D7DAE6"] forState:UIControlStateNormal];
     [_startTimeButton setTitleColor:[UIColor pg_colorWithHexString:@"#7396FD"] forState:UIControlStateSelected];
-    [_startTimeButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    [_startTimeButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
     [_startTimeButton addTarget:self action:@selector(startTimeBtnAction) forControlEvents:UIControlEventTouchUpInside];
     [_startTimeButton setTitle:@"开始日期" forState:UIControlStateNormal];
     [self addSubview:_startTimeButton];
-    
+
     _startTimeLineView = [[UIView alloc] init];
     [_startTimeLineView setBackgroundColor:[UIColor pg_colorWithHexString:@"#D7DAE6"]];
     [self addSubview:_startTimeLineView];
@@ -83,7 +83,7 @@
     _endTimeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_endTimeButton setTitleColor:[UIColor pg_colorWithHexString:@"#D7DAE6"] forState:UIControlStateNormal];
     [_endTimeButton setTitleColor:[UIColor pg_colorWithHexString:@"#7396FD"] forState:UIControlStateSelected];
-    [_endTimeButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    [_endTimeButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
     [_endTimeButton addTarget:self action:@selector(endTimeBtnAction) forControlEvents:UIControlEventTouchUpInside];
     [_endTimeButton setTitle:@"结束日期" forState:UIControlStateNormal];
     [self addSubview:_endTimeButton];
