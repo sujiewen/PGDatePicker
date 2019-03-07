@@ -13,8 +13,8 @@ class ViewController: UIViewController {
 
     @IBAction func yearHandler(_ sender: Any) {
         let datePickerManager = PGDatePickManager()
-        datePickerManager.isShadeBackgroud = true
-        datePickerManager.style = .style2
+        datePickerManager.isShadeBackground = true
+        datePickerManager.style = .alertTopButton
         let datePicker = datePickerManager.datePicker!
         datePicker.delegate = self
         datePicker.datePickerMode = .year
@@ -25,8 +25,8 @@ class ViewController: UIViewController {
     
     @IBAction func yearAndMonthHandler(_ sender: Any) {
         let datePickerManager = PGDatePickManager()
-        datePickerManager.isShadeBackgroud = true
-        datePickerManager.style = .style3
+        datePickerManager.isShadeBackground = true
+        datePickerManager.style = .alertBottomButton
         let datePicker = datePickerManager.datePicker!
         datePicker.delegate = self
         datePicker.datePickerType = .type1
@@ -108,7 +108,7 @@ class ViewController: UIViewController {
         //设置头部的背景颜色
         datePickerManager.headerViewBackgroundColor = UIColor.orange
         //设置半透明背景
-        datePickerManager.isShadeBackgroud = true
+        datePickerManager.isShadeBackground = true
         //设置线条的颜色
         datePicker.lineBackgroundColor = UIColor.red
         //设置选中行的字体颜色

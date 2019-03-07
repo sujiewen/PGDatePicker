@@ -18,4 +18,5 @@
 + (NSDate *)setHour:(NSInteger)hour minute:(NSInteger)minute second:(NSInteger)second;
 + (NSDate *)setMonth:(NSInteger)month day:(NSInteger)day hour:(NSInteger)hour minute:(NSInteger)minute;
 - (NSInteger)howManyDaysWithMonth;
-@end
++ (NSDate *)dateFromComponents:(NSDateComponents*)dateComponents;
+    @end

@@ -13,7 +13,7 @@
 
 @property (nonatomic, weak) PGDatePicker *datePicker;
 @property (nonatomic, assign) PGDatePickManagerStyle style;
-@property (nonatomic, assign) BOOL isShadeBackgroud;
+@property (nonatomic, assign) BOOL isShadeBackground;
 
 @property (nonatomic, copy) NSString *cancelButtonText;
 @property (nonatomic, copy) UIFont *cancelButtonFont;
@@ -34,11 +34,12 @@
 @property (nonatomic, strong)UIColor *headerViewBackgroundColor;
 @property (nonatomic, assign) CGFloat headerHeight;
 
-/**
- 
- */
 @property (nonatomic, assign) BOOL isShowUnit;
 @property (nonatomic, copy)  void(^cancelButtonMonitor)();
 
+/**
+ custom dismiss controller animation, return the total duration of the custom animation, default is nil
+ */
+@property (nonatomic, copy) NSTimeInterval(^customDismissAnimation)(UIView* dismissView, UIView* contentView );
 
 @end

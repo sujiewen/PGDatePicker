@@ -19,6 +19,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         self.modalPresentationStyle = UIModalPresentationCustom;
+        self.customDismissAnimation = nil;
         [self setupDismissViewTapHandler];
         [self headerViewButtonHandler];
     }
@@ -44,7 +45,7 @@
     self.contentView.backgroundColor = self.datePicker.backgroundColor;
     if (self.style == PGDatePickManagerStyleSheet) {
         [self setupStyleSheet];
-    }else if (self.style == PGDatePickManagerStyleAlert) {
+    }else if (self.style == PGDatePickManagerStyleAlertTopButton) {
         [self setupStyleAlert];
     }else {
         [self setupStyle3];
@@ -74,17 +75,26 @@
 }
 
 - (void)cancelButtonHandler {
-    if (self.style == PGDatePickManagerStyleSheet) {
-        CGRect contentViewFrame = self.contentView.frame;
-        contentViewFrame.origin.y = self.view.bounds.size.height;
-        [UIView animateWithDuration:0.2 animations:^{
-            self.dismissView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0];
-            self.contentView.frame = contentViewFrame;
-        }completion:^(BOOL finished) {
+    if (self.customDismissAnimation) {
+        NSTimeInterval duration = self.customDismissAnimation(self.dismissView, self.contentView);
+        if (duration && duration != NSNotFound) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(duration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self dismissViewControllerAnimated:false completion:nil];
+            });
+        }
+    } else {
+        if (self.style == PGDatePickManagerStyleSheet) {
+            CGRect contentViewFrame = self.contentView.frame;
+            contentViewFrame.origin.y = self.view.bounds.size.height;
+            [UIView animateWithDuration:0.2 animations:^{
+                self.dismissView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0];
+                self.contentView.frame = contentViewFrame;
+            }completion:^(BOOL finished) {
+                [self dismissViewControllerAnimated:false completion:nil];
+            }];
+        }else {
             [self dismissViewControllerAnimated:false completion:nil];
-        }];
-    }else {
-        [self dismissViewControllerAnimated:false completion:nil];
+        }
     }
 }
 
@@ -122,7 +132,7 @@
     self.datePicker.frame = datePickerFrame;
     self.headerView.backgroundColor = self.headerViewBackgroundColor;
     [UIView animateWithDuration:0.2 animations:^{
-        if (self.isShadeBackgroud) {
+        if (self.isShadeBackground) {
             self.dismissView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
         }
         self.contentView.frame = contentViewFrame;
@@ -153,7 +163,7 @@
     self.contentView.transform = CGAffineTransformMakeScale(0.5, 0.5);
     [UIView animateWithDuration:0.05
                      animations:^{
-                         if (self.isShadeBackgroud) {
+                         if (self.isShadeBackground) {
                              self.dismissView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
                          }
                          self.contentView.transform = CGAffineTransformMakeScale(1.0, 1.0);
@@ -183,7 +193,7 @@
     self.contentView.transform = CGAffineTransformMakeScale(0.5, 0.5);
     [UIView animateWithDuration:0.05
                      animations:^{
-                         if (self.isShadeBackgroud) {
+                         if (self.isShadeBackground) {
                              self.dismissView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.6];
                          }
                          self.contentView.transform = CGAffineTransformMakeScale(1.0, 1.0);
@@ -192,9 +202,9 @@
 
 #pragma Setter
 
-- (void)setIsShadeBackgroud:(BOOL)isShadeBackgroud {
-    _isShadeBackgroud = isShadeBackgroud;
-    if (isShadeBackgroud) {
+- (void)setIsShadeBackground:(BOOL)isShadeBackground {
+    _isShadeBackground = isShadeBackground;
+    if (isShadeBackground) {
         self.dismissView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0];
     }else {
         self.dismissView.backgroundColor = [UIColor clearColor];

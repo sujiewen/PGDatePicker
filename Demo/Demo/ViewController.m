@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "PGDatePickManager.h"
-#import "CustomPGDatePickerManager.h"
+//#import "CustomPGDatePickerManager.h"
 
 @interface ViewController ()<PGDatePickerDelegate>
 
@@ -25,14 +25,13 @@
  */
 - (IBAction)yearHandler:(UIButton *)sender {
     PGDatePickManager *datePickManager = [[PGDatePickManager alloc]init];
-    datePickManager.style = PGDatePickManagerStyleAlert;
-    datePickManager.isShadeBackgroud = true;
-    
+    datePickManager.style = PGDatePickManagerStyleAlertTopButton;
+    datePickManager.isShadeBackground = true;
     PGDatePicker *datePicker = datePickManager.datePicker;
     datePicker.showUnit = PGShowUnitTypeNone;
-//    datePicker.isHiddenMiddleText = false;
+    datePicker.isHiddenMiddleText = false;
     datePicker.delegate = self;
-    datePicker.datePickerType = PGDatePickerType3;
+    datePicker.datePickerType = PGDatePickerTypeVertical;
     datePicker.datePickerMode = PGDatePickerModeYear;
     [self presentViewController:datePickManager animated:false completion:nil];
     
@@ -52,13 +51,12 @@
  */
 - (IBAction)yearAndMonthHandler:(id)sender {
     PGDatePickManager *datePickManager = [[PGDatePickManager alloc]init];
-    datePickManager.style = PGDatePickManagerStyleSheet;
-    datePickManager.isShadeBackgroud = true;
-    
+    datePickManager.style = PGDatePickManagerStyleAlertBottomButton;
+    datePickManager.isShadeBackground = true;
     PGDatePicker *datePicker = datePickManager.datePicker;
     datePicker.isHiddenMiddleText = false;
     datePicker.delegate = self;
-    datePicker.datePickerType = PGDatePickerType2;
+    datePicker.datePickerType = PGDatePickerTypeSegment;
     datePicker.datePickerMode = PGDatePickerModeYearAndMonth;
     [self presentViewController:datePickManager animated:false completion:nil];
 
@@ -77,11 +75,16 @@
  */
 - (IBAction)dateHandler:(id)sender {
     PGDatePickManager *datePickManager = [[PGDatePickManager alloc]init];
-    datePickManager.isShadeBackgroud = true;
+    datePickManager.isShadeBackground = true;
     PGDatePicker *datePicker = datePickManager.datePicker;
-//    datePicker.delegate = self;
-//    datePicker.datePickerType = PGDatePickerType2;
+//<<<<<<< HEAD
+////    datePicker.delegate = self;
+////    datePicker.datePickerType = PGDatePickerType2;
+//=======
+    datePicker.delegate = self;
+    datePicker.datePickerType = PGDatePickerTypeVertical;
     datePicker.isHiddenMiddleText = false;
+//    datePicker.isCycleScroll = true;
     datePicker.datePickerMode = PGDatePickerModeDate;
     [self presentViewController:datePickManager animated:false completion:nil];
     
@@ -100,8 +103,7 @@
  */
 - (IBAction)dateHourHandler:(UIButton *)sender {
     PGDatePickManager *datePickManager = [[PGDatePickManager alloc]init];
-    
-    datePickManager.isShadeBackgroud = true;
+    datePickManager.isShadeBackground = true;
     PGDatePicker *datePicker = datePickManager.datePicker;
     datePicker.delegate = self;
     datePicker.datePickerMode = PGDatePickerModeDateHour;
@@ -124,10 +126,10 @@
  */
 - (IBAction)dateHourMinuteHandler:(UIButton *)sender {
     PGDatePickManager *datePickManager = [[PGDatePickManager alloc]init];
-    datePickManager.isShadeBackgroud = true;
+    datePickManager.isShadeBackground = true;
     PGDatePicker *datePicker = datePickManager.datePicker;
     datePicker.delegate = self;
-    datePicker.datePickerType = PGDatePickerType2;
+    datePicker.datePickerType = PGDatePickerTypeSegment;
     datePicker.datePickerMode = PGDatePickerModeDateHourMinute;
     [self presentViewController:datePickManager animated:false completion:nil];
     
@@ -145,24 +147,34 @@
  年月日时分秒
  */
 - (IBAction)dateHourMinuteSecondHandler:(UIButton *)sender {
-    CustomPGDatePickerManager *datePickManager = [[CustomPGDatePickerManager alloc]init];
-    datePickManager.finishIntervalTimeBlock = ^(NSString * _Nonnull strStartTime, NSString * _Nonnull strEndTime) {
-        NSLog(@"strStartTime=%@,,strEndTime=%@",strStartTime,strEndTime);
-    };
-    datePickManager.headerViewBackgroundColor = [UIColor whiteColor];
-    PGDatePicker *datePicker = datePickManager.datePicker;
+//    CustomPGDatePickerManager *datePickManager = [[CustomPGDatePickerManager alloc]init];
+//    datePickManager.finishIntervalTimeBlock = ^(NSString * _Nonnull strStartTime, NSString * _Nonnull strEndTime) {
+//        NSLog(@"strStartTime=%@,,strEndTime=%@",strStartTime,strEndTime);
+//    };
+//    datePickManager.headerViewBackgroundColor = [UIColor whiteColor];
+//    PGDatePicker *datePicker = datePickManager.datePicker;
+//<<<<<<< HEAD
+////    datePicker.delegate = self;
+//    datePicker.datePickerType = PGDatePickerType3;
+//    datePicker.datePickerMode = PGDatePickerModeDate;
+//    datePicker.middleTextColor = [UIColor redColor];
+//=======
 //    datePicker.delegate = self;
-    datePicker.datePickerType = PGDatePickerType3;
-    datePicker.datePickerMode = PGDatePickerModeDate;
-    datePicker.middleTextColor = [UIColor redColor];
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    
+//    datePicker.datePickerType = PGDatePickerTypeVertical;
+//    datePicker.datePickerMode = PGDatePickerModeDateHourMinuteSecond;
+//    [self presentViewController:datePickManager animated:false completion:nil];
+//
+////    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+////    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//>>>>>>> 8e3f64c14694f7ced802edfaeadc94bbef66fa27
+//
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+//    dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//
 //    datePicker.minimumDate = [dateFormatter dateFromString: @"2018-12-09 05:04:23"];
 //    datePicker.maximumDate = [dateFormatter dateFromString: @"2018-12-12 05:04:23"];
-
-    [self presentViewController:datePickManager animated:false completion:nil];
+//
+//    [self presentViewController:datePickManager animated:false completion:nil];
 
 }
 
@@ -171,10 +183,10 @@
  */
 - (IBAction)monthAndDayHandler:(id)sender {
     PGDatePickManager *datePickManager = [[PGDatePickManager alloc]init];
-    datePickManager.isShadeBackgroud = true;
+    datePickManager.isShadeBackground = true;
     PGDatePicker *datePicker = datePickManager.datePicker;
     datePicker.delegate = self;
-    datePicker.datePickerType = PGDatePickerType1;
+    datePicker.datePickerType = PGDatePickerTypeLine;
     datePicker.isHiddenMiddleText = true;
     datePicker.datePickerMode = PGDatePickerModeMonthDay;
     [self presentViewController:datePickManager animated:false completion:nil];
@@ -194,10 +206,10 @@
  */
 - (IBAction)monthDayAndHourHandler:(id)sender {
     PGDatePickManager *datePickManager = [[PGDatePickManager alloc]init];
-    datePickManager.isShadeBackgroud = true;
+    datePickManager.isShadeBackground = true;
     PGDatePicker *datePicker = datePickManager.datePicker;
     datePicker.delegate = self;
-    datePicker.datePickerType = PGDatePickerType1;
+    datePicker.datePickerType = PGDatePickerTypeLine;
     datePicker.isHiddenMiddleText = true;
     datePicker.datePickerMode = PGDatePickerModeMonthDayHour;
     [self presentViewController:datePickManager animated:false completion:nil];
@@ -217,10 +229,10 @@
  */
 - (IBAction)monthDayHourAndMinuteHandler:(id)sender {
     PGDatePickManager *datePickManager = [[PGDatePickManager alloc]init];
-    datePickManager.isShadeBackgroud = true;
+    datePickManager.isShadeBackground = true;
     PGDatePicker *datePicker = datePickManager.datePicker;
     datePicker.delegate = self;
-    datePicker.datePickerType = PGDatePickerType1;
+    datePicker.datePickerType = PGDatePickerTypeLine;
     datePicker.isHiddenMiddleText = true;
     datePicker.datePickerMode = PGDatePickerModeMonthDayHourMinute;
     [self presentViewController:datePickManager animated:false completion:nil];
@@ -240,10 +252,10 @@
  */
 - (IBAction)monthDayHourMinuteSecondHandler:(id)sender {
     PGDatePickManager *datePickManager = [[PGDatePickManager alloc]init];
-    datePickManager.isShadeBackgroud = true;
+    datePickManager.isShadeBackground = true;
     PGDatePicker *datePicker = datePickManager.datePicker;
     datePicker.delegate = self;
-    datePicker.datePickerType = PGDatePickerType1;
+    datePicker.datePickerType = PGDatePickerTypeLine;
     datePicker.isHiddenMiddleText = true;
     datePicker.datePickerMode = PGDatePickerModeMonthDayHourMinuteSecond;
     [self presentViewController:datePickManager animated:false completion:nil];
@@ -264,7 +276,7 @@
 - (IBAction)timeHandler:(id)sender {
     PGDatePickManager *datePickManager = [[PGDatePickManager alloc]init];
     PGDatePicker *datePicker = datePickManager.datePicker;
-    datePicker.isOnlyHourFlag = YES;
+//    datePicker.isOnlyHourFlag = YES;
     datePicker.delegate = self;
     datePicker.datePickerMode = PGDatePickerModeTime;
     [self presentViewController:datePickManager animated:false completion:nil];
@@ -357,7 +369,7 @@
     
     datePickManager.titleLabel.text = @"PGDatePicker";
     //设置半透明的背景颜色
-    datePickManager.isShadeBackgroud = true;
+    datePickManager.isShadeBackground = true;
     //设置头部的背景颜色
     datePickManager.headerViewBackgroundColor = [UIColor orangeColor];
     //设置线条的颜色
@@ -379,6 +391,17 @@
     datePickManager.confirmButtonText = @"Sure";
     //设置确定按钮的字体大小
     datePickManager.confirmButtonFont = [UIFont boldSystemFontOfSize:17];
+    
+    
+    // 自定义收起动画逻辑
+    datePickManager.customDismissAnimation = ^NSTimeInterval(UIView *dismissView, UIView *contentView) {
+        NSTimeInterval duration = 1.0f;
+        [UIView animateWithDuration:duration animations:^{
+            contentView.frame = (CGRect){{contentView.frame.origin.x, CGRectGetMaxY(self.view.bounds)}, contentView.bounds.size};
+        } completion:^(BOOL finished) {
+        }];
+        return duration;
+    };
 }
 
 #pragma PGDatePickerDelegate

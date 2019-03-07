@@ -41,6 +41,17 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
     return self;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        self.isHiddenMiddleText = true;
+        self.isHiddenWheels = true;
+        
+        self.secondInterval = 1;
+        self.minuteInterval = 1;
+    }
+    return self;
+}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
     if (_isSelectedCancelButton) {
@@ -60,7 +71,7 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
     }else {
         self.selectComponents = [self.calendar components:self.unitFlags fromDate:[NSDate date]];
     }
-    NSInteger day = [self howManyDaysWithMonthInThisYear:self.selectComponents.year withMonth:self.selectComponents.month];
+    NSInteger day = [self daysWithMonthInThisYear:self.selectComponents.year withMonth:self.selectComponents.month];
     [self setDayListForMonthDays:day];
     CGFloat bottom = 0;
     if (@available(iOS 11.0, *)) {
@@ -75,6 +86,7 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
     pickerView.isHiddenMiddleText = self.isHiddenMiddleText;
     pickerView.middleTextColor = self.middleTextColor;
     pickerView.isHiddenWheels = self.isHiddenWheels;
+    pickerView.isCycleScroll = self.isCycleScroll;
     pickerView.lineBackgroundColor = self.lineBackgroundColor;
     if (_titleColorForOtherRow) {
         self.textColorOfOtherRow = _titleColorForOtherRow;
@@ -477,13 +489,6 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
 }
 
 - (void)pickerView:(PGPickerView *)pickerView title:(NSString *)title didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    if (!_isDelay && _isSetDateAnimation) {
-        dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.40 * NSEC_PER_SEC));
-        dispatch_after(delayTime, dispatch_get_main_queue(), ^{
-            _isDelay = true;
-        });
-        return;
-    }
     row = row + 1;
     switch (self.datePickerMode) {
         case PGDatePickerModeYearAndMonth:
@@ -1084,7 +1089,7 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
         _maximumComponents = [self.calendar components:self.unitFlags fromDate:self.maximumDate];
     }else {
         _maximumComponents = [self.calendar components:self.unitFlags fromDate:[NSDate distantFuture]];
-        NSInteger day = [self howManyDaysWithMonthInThisYear:self.currentComponents.year withMonth:self.currentComponents.month];
+        NSInteger day = [self daysWithMonthInThisYear:self.currentComponents.year withMonth:self.currentComponents.month];
         _maximumComponents.day = day;
         _maximumComponents.month = 12;
         _maximumComponents.hour = 23;
@@ -1128,7 +1133,7 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
 
 - (NSArray *)yearList {
     if (!_yearList) {
-        NSInteger index = self.maximumComponents.year - self.minimumComponents.year;
+        NSUInteger index = self.maximumComponents.year - self.minimumComponents.year;
         NSMutableArray *years = [NSMutableArray arrayWithCapacity:index];
         for (NSUInteger i = self.minimumComponents.year; i <= self.maximumComponents.year; i++) {
             [years addObject:[@(i) stringValue]];
@@ -1140,8 +1145,8 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
 
 - (NSArray *)monthList {
     if (!_monthList) {
-        NSInteger minimum = 1;
-        NSInteger maximum = 12;
+        NSUInteger minimum = 1;
+        NSUInteger maximum = 12;
         if (_setDate == nil && self.maximumComponents.year <= self.currentComponents.year) {
             maximum = self.maximumComponents.month;
         }
@@ -1167,8 +1172,8 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
 
 - (NSArray *)hourList {
     if (!_hourList) {
-        NSInteger minimum = 0;
-        NSInteger maximum = 23;
+        NSUInteger minimum = 0;
+        NSUInteger maximum = 23;
         
         if (self.selectComponents.year == self.maximumComponents.year &&
             self.selectComponents.month == self.maximumComponents.month &&
@@ -1212,8 +1217,8 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
 
 - (NSArray *)minuteList {
     if (!_minuteList) {
-        NSInteger minimum = 0;
-        NSInteger maximum = 59;
+        NSUInteger minimum = 0;
+        NSUInteger maximum = 59;
         if (self.selectComponents.year == self.maximumComponents.year &&
             self.selectComponents.month == self.maximumComponents.month &&
             self.selectComponents.day == self.maximumComponents.day &&
@@ -1267,8 +1272,8 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
 
 - (NSArray *)secondList {
     if (!_secondList) {
-        NSInteger minimum = 0;
-        NSInteger maximum = 59;
+        NSUInteger minimum = 0;
+        NSUInteger maximum = 59;
         if (self.selectComponents.year == self.maximumComponents.year &&
             self.selectComponents.month == self.maximumComponents.month &&
             self.selectComponents.day == self.maximumComponents.day &&
@@ -1301,7 +1306,7 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
                 maximum = self.maximumComponents.second;
             }
         }
-        NSInteger index = maximum - minimum;
+        NSUInteger index = maximum - minimum;
         NSMutableArray *seconds = [NSMutableArray arrayWithCapacity:index];
         for (NSUInteger i = minimum; i <= maximum; i+=self.secondInterval) {
             if (i < 10) {
@@ -1318,21 +1323,25 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
 - (NSArray *)dateAndTimeList {
     if (!_dateAndTimeList) {
         NSMutableArray *array = [NSMutableArray array];
-        NSInteger firstIndex = self.minimumComponents.month - 1;
-        NSInteger lastIndex = self.maximumComponents.month - 1;
+        NSUInteger firstIndex = self.minimumComponents.month - 1;
+        NSUInteger lastIndex = self.maximumComponents.month - 1;
         NSString *monthString = [NSBundle pg_localizedStringForKey:@"monthString" language:self.language];
         NSString *dayString = [NSBundle pg_localizedStringForKey:@"dayString" language:self.language];
-        
-        for (NSInteger i = firstIndex; i <= lastIndex; i++) {
-            NSString *month = self.monthList[i];
-            NSInteger day = [self howManyDaysWithMonthInThisYear:self.currentComponents.year withMonth:[month integerValue]];
+        if (firstIndex == lastIndex) {
+            firstIndex = 0;
+            lastIndex = 0;
+        }
+        for (NSUInteger i = firstIndex; i <= lastIndex; i++) {
+            NSUInteger index = i - firstIndex;
+            NSString *month = self.monthList[index];
+            NSUInteger day = [self daysWithMonthInThisYear:self.currentComponents.year withMonth:[month integerValue]];
             {
                 NSMutableArray *days = [NSMutableArray arrayWithCapacity:day];
                 NSInteger minDay = 1, maxDay = day;
                 if (i == firstIndex) {
                     minDay = self.minimumComponents.day;
                 }
-                if (i == lastIndex && self.maximumComponents.day != 1) {
+                if (i == lastIndex) {
                     maxDay = self.maximumComponents.day;
                 }
                 for (NSUInteger i = minDay; i <= maxDay; i++) {
@@ -1341,8 +1350,11 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
                 self.dayList = days;
             }
             [self.dayList enumerateObjectsUsingBlock:^(NSString*  _Nonnull day, NSUInteger idx, BOOL * _Nonnull stop) {
-                NSInteger weekDay = [self.calendar component:NSCalendarUnitWeekday fromDate:[NSDate setYear:self.currentComponents.year month:[month integerValue] day:[day integerValue]]];
-                
+                NSDateComponents *dateComponents = [[NSDateComponents alloc]init];
+                dateComponents.year = self.currentComponents.year;
+                dateComponents.month = [month integerValue];
+                dateComponents.day = [day integerValue];
+                NSInteger weekDay = [self.calendar component:NSCalendarUnitWeekday fromDate:[NSDate dateFromComponents:dateComponents]];
                 NSString *string = [NSString stringWithFormat:@"%@%@%@%@ %@ ", month, monthString, day, dayString, [self weekMappingFrom:weekDay]];
                 [array addObject:string];
             }];

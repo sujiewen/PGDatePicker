@@ -8,16 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1EDA25BA09FE89D7BDAF0AEA /* libPods-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C1AD5D00F6F1B3FE88BE451 /* libPods-Demo.a */; };
-		6B95FF0A222F69F300A58028 /* CustomPGDatePickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B95FF09222F69F300A58028 /* CustomPGDatePickerManager.m */; };
-		6B95FF0D222F6BF000A58028 /* CustomPGDatePickManagerIntervalTimeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B95FF0C222F6BF000A58028 /* CustomPGDatePickManagerIntervalTimeHeaderView.m */; };
-		6B95FF10222F704000A58028 /* CustomPGDatePickManagerHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B95FF0F222F704000A58028 /* CustomPGDatePickManagerHeaderView.m */; };
 		862DEB861F395BEC00B5AB4C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 862DEB851F395BEC00B5AB4C /* main.m */; };
 		862DEB891F395BEC00B5AB4C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 862DEB881F395BEC00B5AB4C /* AppDelegate.m */; };
 		862DEB8C1F395BEC00B5AB4C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 862DEB8B1F395BEC00B5AB4C /* ViewController.m */; };
 		862DEB911F395BEC00B5AB4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 862DEB901F395BEC00B5AB4C /* Assets.xcassets */; };
-		866BADEE205EC6D50016E8C0 /* SPGDatePicker.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 866BADED205EC6D40016E8C0 /* SPGDatePicker.podspec */; };
 		866BE8F5205F5BAD001943C0 /* NSBundle+PGDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 866BE8CD205F5BAD001943C0 /* NSBundle+PGDatePicker.m */; };
-		866BE8F6205F5BAD001943C0 /* NSCalendar+PGCurrent.m in Sources */ = {isa = PBXBuildFile; fileRef = 866BE8CF205F5BAD001943C0 /* NSCalendar+PGCurrent.m */; };
 		866BE8F7205F5BAD001943C0 /* NSDate+PGCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 866BE8D1205F5BAD001943C0 /* NSDate+PGCategory.m */; };
 		866BE8F8205F5BAD001943C0 /* PGDatePicker+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 866BE8D3205F5BAD001943C0 /* PGDatePicker+Common.m */; };
 		866BE8F9205F5BAD001943C0 /* PGDatePicker+Date.m in Sources */ = {isa = PBXBuildFile; fileRef = 866BE8D5205F5BAD001943C0 /* PGDatePicker+Date.m */; };
@@ -60,12 +55,6 @@
 
 /* Begin PBXFileReference section */
 		5B3322A50C89EB8BE4072C04 /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
-		6B95FF08222F69F300A58028 /* CustomPGDatePickerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomPGDatePickerManager.h; sourceTree = "<group>"; };
-		6B95FF09222F69F300A58028 /* CustomPGDatePickerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomPGDatePickerManager.m; sourceTree = "<group>"; };
-		6B95FF0B222F6BF000A58028 /* CustomPGDatePickManagerIntervalTimeHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomPGDatePickManagerIntervalTimeHeaderView.h; sourceTree = "<group>"; };
-		6B95FF0C222F6BF000A58028 /* CustomPGDatePickManagerIntervalTimeHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomPGDatePickManagerIntervalTimeHeaderView.m; sourceTree = "<group>"; };
-		6B95FF0E222F704000A58028 /* CustomPGDatePickManagerHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomPGDatePickManagerHeaderView.h; sourceTree = "<group>"; };
-		6B95FF0F222F704000A58028 /* CustomPGDatePickManagerHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomPGDatePickManagerHeaderView.m; sourceTree = "<group>"; };
 		860397801FD7D30300128356 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		862DEB811F395BEC00B5AB4C /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		862DEB851F395BEC00B5AB4C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -75,11 +64,8 @@
 		862DEB8B1F395BEC00B5AB4C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		862DEB901F395BEC00B5AB4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		862DEB951F395BEC00B5AB4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		866BADED205EC6D40016E8C0 /* SPGDatePicker.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SPGDatePicker.podspec; path = ../../SPGDatePicker.podspec; sourceTree = "<group>"; };
 		866BE8CC205F5BAD001943C0 /* NSBundle+PGDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+PGDatePicker.h"; sourceTree = "<group>"; };
 		866BE8CD205F5BAD001943C0 /* NSBundle+PGDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+PGDatePicker.m"; sourceTree = "<group>"; };
-		866BE8CE205F5BAD001943C0 /* NSCalendar+PGCurrent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+PGCurrent.h"; sourceTree = "<group>"; };
-		866BE8CF205F5BAD001943C0 /* NSCalendar+PGCurrent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+PGCurrent.m"; sourceTree = "<group>"; };
 		866BE8D0205F5BAD001943C0 /* NSDate+PGCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+PGCategory.h"; sourceTree = "<group>"; };
 		866BE8D1205F5BAD001943C0 /* NSDate+PGCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+PGCategory.m"; sourceTree = "<group>"; };
 		866BE8D2205F5BAD001943C0 /* PGDatePicker+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PGDatePicker+Common.h"; sourceTree = "<group>"; };
@@ -178,7 +164,6 @@
 			isa = PBXGroup;
 			children = (
 				866BE8CB205F5BAD001943C0 /* PGDatePicker */,
-				866BADED205EC6D40016E8C0 /* SPGDatePicker.podspec */,
 				86D350EB1FAE3D340089617F /* Main.storyboard */,
 				862DEB871F395BEC00B5AB4C /* AppDelegate.h */,
 				862DEB881F395BEC00B5AB4C /* AppDelegate.m */,
@@ -204,8 +189,6 @@
 			children = (
 				866BE8CC205F5BAD001943C0 /* NSBundle+PGDatePicker.h */,
 				866BE8CD205F5BAD001943C0 /* NSBundle+PGDatePicker.m */,
-				866BE8CE205F5BAD001943C0 /* NSCalendar+PGCurrent.h */,
-				866BE8CF205F5BAD001943C0 /* NSCalendar+PGCurrent.m */,
 				866BE8D0205F5BAD001943C0 /* NSDate+PGCategory.h */,
 				866BE8D1205F5BAD001943C0 /* NSDate+PGCategory.m */,
 				866BE8D2205F5BAD001943C0 /* PGDatePicker+Common.h */,
@@ -253,12 +236,6 @@
 				8680B24D207BA1B4003DA00D /* PGDatePicker+MonthDayHourMinute.m */,
 				8680B24F207BA99F003DA00D /* PGDatePicker+MonthDayHourMinuteSecond.h */,
 				8680B250207BA99F003DA00D /* PGDatePicker+MonthDayHourMinuteSecond.m */,
-				6B95FF08222F69F300A58028 /* CustomPGDatePickerManager.h */,
-				6B95FF09222F69F300A58028 /* CustomPGDatePickerManager.m */,
-				6B95FF0B222F6BF000A58028 /* CustomPGDatePickManagerIntervalTimeHeaderView.h */,
-				6B95FF0C222F6BF000A58028 /* CustomPGDatePickManagerIntervalTimeHeaderView.m */,
-				6B95FF0E222F704000A58028 /* CustomPGDatePickManagerHeaderView.h */,
-				6B95FF0F222F704000A58028 /* CustomPGDatePickManagerHeaderView.m */,
 			);
 			name = PGDatePicker;
 			path = ../../PGDatePicker;
@@ -306,7 +283,7 @@
 				TargetAttributes = {
 					862DEB801F395BEC00B5AB4C = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = CY3E8BKFM9;
+						DevelopmentTeam = 65MUSRJ8L7;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -336,7 +313,6 @@
 				86D350E91FAE3D340089617F /* Main.storyboard in Resources */,
 				862DEB911F395BEC00B5AB4C /* Assets.xcassets in Resources */,
 				866BE903205F5BAD001943C0 /* PGDatePicker.bundle in Resources */,
-				866BADEE205EC6D50016E8C0 /* SPGDatePicker.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,11 +345,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8680B24B207B9C69003DA00D /* PGDatePicker+MonthDayHour.m in Sources */,
-				6B95FF0D222F6BF000A58028 /* CustomPGDatePickManagerIntervalTimeHeaderView.m in Sources */,
 				C82C7B072064FB0E000C9604 /* PGDatePicker+DateHour.m in Sources */,
 				866BE907205F5BAD001943C0 /* PGDatePickManagerHeaderView.m in Sources */,
-				6B95FF0A222F69F300A58028 /* CustomPGDatePickerManager.m in Sources */,
-				866BE8F6205F5BAD001943C0 /* NSCalendar+PGCurrent.m in Sources */,
 				862DEB8C1F395BEC00B5AB4C /* ViewController.m in Sources */,
 				866BE8FE205F5BAD001943C0 /* PGDatePicker+MinuteAndSecond.m in Sources */,
 				866BE8FF205F5BAD001943C0 /* PGDatePicker+Time.m in Sources */,
@@ -394,7 +367,6 @@
 				866BE900205F5BAD001943C0 /* PGDatePicker+TimeAndSecond.m in Sources */,
 				862DEB861F395BEC00B5AB4C /* main.m in Sources */,
 				866BE8F8205F5BAD001943C0 /* PGDatePicker+Common.m in Sources */,
-				6B95FF10222F704000A58028 /* CustomPGDatePickManagerHeaderView.m in Sources */,
 				866BE901205F5BAD001943C0 /* PGDatePicker+Year.m in Sources */,
 				866BE8F5205F5BAD001943C0 /* NSBundle+PGDatePicker.m in Sources */,
 				866BE8FC205F5BAD001943C0 /* PGDatePicker+DateHourMinuteSecond.m in Sources */,
@@ -515,7 +487,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = CY3E8BKFM9;
+				DEVELOPMENT_TEAM = 65MUSRJ8L7;
 				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -530,7 +502,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = CY3E8BKFM9;
+				DEVELOPMENT_TEAM = 65MUSRJ8L7;
 				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
