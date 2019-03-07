@@ -106,6 +106,9 @@ typedef NS_ENUM(NSUInteger, PGShowUnitType) {
  */
 - (void)tapSelectedHandler;
 
+//时间选中
+- (void)selectedDateLogic;
+
 - (void)setDate:(NSDate *)date;
 - (void)setDate:(NSDate *)date animated:(BOOL)animated;
 

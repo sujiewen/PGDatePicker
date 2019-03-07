@@ -31,6 +31,7 @@
     self = [super init];
     if (self) {
         self.itemWidth = 86;
+        self.selectTag = -1;
     }
     return self;
 }
@@ -64,16 +65,15 @@
     [self addSubview:_topLineView];
     
     _startTimeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_startTimeButton setTitleColor:[UIColor pg_colorWithHexString:@"#9EABBE"] forState:UIControlStateNormal];
+    [_startTimeButton setTitleColor:[UIColor pg_colorWithHexString:@"#D7DAE6"] forState:UIControlStateNormal];
     [_startTimeButton setTitleColor:[UIColor pg_colorWithHexString:@"#7396FD"] forState:UIControlStateSelected];
     [_startTimeButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [_startTimeButton addTarget:self action:@selector(startTimeBtnAction) forControlEvents:UIControlEventTouchUpInside];
-    _startTimeButton.selected = YES;
+    [_startTimeButton setTitle:@"开始日期" forState:UIControlStateNormal];
     [self addSubview:_startTimeButton];
-    self.selectTag = 0;
     
     _startTimeLineView = [[UIView alloc] init];
-    [_startTimeLineView setBackgroundColor:[UIColor pg_colorWithHexString:@"#7396FD"]];
+    [_startTimeLineView setBackgroundColor:[UIColor pg_colorWithHexString:@"#D7DAE6"]];
     [self addSubview:_startTimeLineView];
     
     _separationLineView = [[UIImageView alloc] init];
@@ -81,10 +81,11 @@
     [self addSubview:_separationLineView];
     
     _endTimeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_endTimeButton setTitleColor:[UIColor pg_colorWithHexString:@"#9EABBE"] forState:UIControlStateNormal];
+    [_endTimeButton setTitleColor:[UIColor pg_colorWithHexString:@"#D7DAE6"] forState:UIControlStateNormal];
     [_endTimeButton setTitleColor:[UIColor pg_colorWithHexString:@"#7396FD"] forState:UIControlStateSelected];
     [_endTimeButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [_endTimeButton addTarget:self action:@selector(endTimeBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [_endTimeButton setTitle:@"结束日期" forState:UIControlStateNormal];
     [self addSubview:_endTimeButton];
 
     _endTimeLineView = [[UIView alloc] init];
@@ -134,10 +135,6 @@
     [_startTimeLineView setBackgroundColor:[UIColor pg_colorWithHexString:@"#D7DAE6"]];
     [_endTimeLineView setBackgroundColor:[UIColor pg_colorWithHexString:@"#7396FD"]];
     
-    if (!_endTimeButton.titleLabel.text) {
-        [_endTimeButton setTitle:_startTimeButton.titleLabel.text forState:UIControlStateNormal];
-    }
-    
     if (_intervalendTimeBlock) {
         _intervalendTimeBlock();
     }
@@ -153,9 +150,16 @@
         _strStartTime = strTime;
         [_startTimeButton setTitle:strTime forState:UIControlStateNormal];
     }
-    else {
+    else if(self.selectTag == 1) {
         _strEndTime = strTime;
         [_endTimeButton setTitle:strTime forState:UIControlStateNormal];
+    }
+    else {
+        _strStartTime = nil;
+        _strEndTime = nil;
+        
+        [_startTimeButton setTitle:@"开始日期" forState:UIControlStateNormal];
+        [_endTimeButton setTitle:@"结束日期" forState:UIControlStateNormal];
     }
 }
 
@@ -169,17 +173,22 @@
         [_startTimeLineView setBackgroundColor:[UIColor pg_colorWithHexString:@"#7396FD"]];
         [_endTimeLineView setBackgroundColor:[UIColor pg_colorWithHexString:@"#D7DAE6"]];
     }
-    else {
+    else if(_selectTag == 1){
         self.startTimeButton.selected = NO;
         self.endTimeButton.selected = YES;
         
         [_startTimeLineView setBackgroundColor:[UIColor pg_colorWithHexString:@"#D7DAE6"]];
         [_endTimeLineView setBackgroundColor:[UIColor pg_colorWithHexString:@"#7396FD"]];
+    }
+    else {
+        self.startTimeButton.selected = NO;
+        self.endTimeButton.selected = NO;
         
-        if (!_strEndTime) {
-            _strEndTime = _strStartTime;
-            [_endTimeButton setTitle:_strStartTime forState:UIControlStateNormal];
-        }
+        [_startTimeLineView setBackgroundColor:[UIColor pg_colorWithHexString:@"#D7DAE6"]];
+        [_endTimeLineView setBackgroundColor:[UIColor pg_colorWithHexString:@"#D7DAE6"]];
+        
+        _strStartTime = nil;
+        _strEndTime = nil;
     }
 }
 

@@ -13,9 +13,11 @@
 @interface CustomPGDatePickerManager ()
 
 @property (nonatomic, weak) UIView *contentView;
-@property (nonatomic, weak) CustomPGDatePickManagerHeaderView *headerView;
+@property (nonatomic, weak) PGDatePickManagerHeaderView *headerView;
 @property (nonatomic, weak) CustomPGDatePickManagerIntervalTimeHeaderView *intervalTimeHeaderView;
 @property (nonatomic, weak) UIView *dismissView;
+//0:开始时间,1:结束时间
+@property (nonatomic, assign) NSInteger selectTag;
 
 @end
 
@@ -28,6 +30,8 @@
 - (instancetype)init {
     if (self = [super init]) {
         self.modalPresentationStyle = UIModalPresentationCustom;
+        self.selectTag = -1;
+        
         [self setupDismissViewTapHandler];
         [self headerViewButtonHandler];
         
@@ -83,21 +87,10 @@
     };
     self.headerView.confirmButtonHandlerBlock =^ (UIButton *button) {
         __strong CustomPGDatePickerManager *strong_self = weak_self;
-        if (strong_self.headerView.confirmButton.tag == 0) {
-            [strong_self.datePicker tapSelectedHandler];
-            
-            [strong_self.headerView handleConfirmButton];
-            [strong_self.intervalTimeHeaderView setSelectTag:1];
-        }
-        else {;
-            [strong_self cancelButtonHandler];
-            
-            [strong_self.headerView handleConfirmButton];
-            [strong_self.intervalTimeHeaderView setSelectTag:0];
-            
-            if (strong_self.finishIntervalTimeBlock) {
-                strong_self.finishIntervalTimeBlock(strong_self.intervalTimeHeaderView.strStartTime,strong_self.intervalTimeHeaderView.strEndTime);
-            }
+        [strong_self cancelButtonHandler];
+        
+        if (strong_self.finishIntervalTimeBlock) {
+            strong_self.finishIntervalTimeBlock(strong_self.intervalTimeHeaderView.strStartTime,strong_self.intervalTimeHeaderView.strEndTime);
         }
     };
 }
@@ -223,14 +216,15 @@
     return _datePicker;
 }
 
-- (CustomPGDatePickManagerHeaderView *)headerView {
+- (PGDatePickManagerHeaderView *)headerView {
     if (!_headerView) {
-        CustomPGDatePickManagerHeaderView *view = [[CustomPGDatePickManagerHeaderView alloc]init];
+        PGDatePickManagerHeaderView *view = [[PGDatePickManagerHeaderView alloc]init];
         [self.contentView addSubview:view];
         _headerView = view;
     }
     return _headerView;
 }
+
 - (CustomPGDatePickManagerIntervalTimeHeaderView *)intervalTimeHeaderView {
     if (!_intervalTimeHeaderView) {
         CustomPGDatePickManagerIntervalTimeHeaderView *view = [[CustomPGDatePickManagerIntervalTimeHeaderView alloc]init];
@@ -239,16 +233,16 @@
         __weak id weak_self = self;
         view.intervalStartTimeBlock = ^{
             __strong CustomPGDatePickerManager *strong_self = weak_self;
-            if (strong_self.headerView.confirmButton.tag == 1) {
-                [strong_self.headerView handleConfirmButton];
-            }
+            strong_self.selectTag = 0;
+            
+            [strong_self.datePicker selectedDateLogic];
         };
         
         view.intervalendTimeBlock = ^{
             __strong CustomPGDatePickerManager *strong_self = weak_self;
-            if (strong_self.headerView.confirmButton.tag == 0) {
-                [strong_self.headerView handleConfirmButton];
-            }
+             strong_self.selectTag = 1;
+            
+            [strong_self.datePicker selectedDateLogic];
         };
         
         _intervalTimeHeaderView = view;
@@ -289,6 +283,10 @@
 #pragma mark - PGDatePickerDelegate
 
 - (void)datePicker:(PGDatePicker *)datePicker didSelectDate:(NSDateComponents *)dateComponents {
+    if (_selectTag == -1) {
+        return;
+    }
+    
     NSString *strTime = @"";
     NSString *strShowTime = @"";
     NSInteger precise = 1;
