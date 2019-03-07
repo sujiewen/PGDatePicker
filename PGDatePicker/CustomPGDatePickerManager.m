@@ -120,8 +120,8 @@
     }
     CGFloat rowHeight = self.datePicker.rowHeight;
     CGFloat headerViewHeight = self.headerHeight;
-    CGFloat contentViewHeight = rowHeight * 5 + headerViewHeight;
-    CGFloat datePickerHeight = contentViewHeight - headerViewHeight - bottom;
+    CGFloat contentViewHeight = rowHeight * 5 + headerViewHeight * 2;
+    CGFloat datePickerHeight = contentViewHeight - headerViewHeight * 2 - bottom;
     CGRect contentViewFrame = CGRectMake(0,
                                          self.view.bounds.size.height - contentViewHeight,
                                          self.view.bounds.size.width,
@@ -235,14 +235,18 @@
             __strong CustomPGDatePickerManager *strong_self = weak_self;
             strong_self.selectTag = 0;
             
-            [strong_self.datePicker selectedDateLogic];
+            if (strong_self.intervalTimeHeaderView.strStartTime == nil) {
+                [strong_self.datePicker selectedDateLogic];
+            }
         };
         
         view.intervalendTimeBlock = ^{
             __strong CustomPGDatePickerManager *strong_self = weak_self;
              strong_self.selectTag = 1;
             
-            [strong_self.datePicker selectedDateLogic];
+            if (strong_self.intervalTimeHeaderView.strEndTime == nil) {
+                [strong_self.datePicker selectedDateLogic];
+            }
         };
         
         _intervalTimeHeaderView = view;

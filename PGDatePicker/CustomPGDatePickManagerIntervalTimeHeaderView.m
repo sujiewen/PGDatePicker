@@ -189,6 +189,9 @@
         
         _strStartTime = nil;
         _strEndTime = nil;
+        
+        [_startTimeButton setTitle:@"开始日期" forState:UIControlStateNormal];
+        [_endTimeButton setTitle:@"结束日期" forState:UIControlStateNormal];
     }
 }
 

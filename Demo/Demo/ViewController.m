@@ -79,8 +79,8 @@
     PGDatePickManager *datePickManager = [[PGDatePickManager alloc]init];
     datePickManager.isShadeBackgroud = true;
     PGDatePicker *datePicker = datePickManager.datePicker;
-    datePicker.delegate = self;
-    datePicker.datePickerType = PGDatePickerType3;
+//    datePicker.delegate = self;
+//    datePicker.datePickerType = PGDatePickerType2;
     datePicker.isHiddenMiddleText = false;
     datePicker.datePickerMode = PGDatePickerModeDate;
     [self presentViewController:datePickManager animated:false completion:nil];
@@ -154,6 +154,7 @@
 //    datePicker.delegate = self;
     datePicker.datePickerType = PGDatePickerType3;
     datePicker.datePickerMode = PGDatePickerModeDate;
+    datePicker.middleTextColor = [UIColor redColor];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
