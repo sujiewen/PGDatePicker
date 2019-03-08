@@ -94,10 +94,14 @@
 
 - (void)setyle {
     if (_datePickerMode == PGDatePickerModeDateHour || _datePickerMode == PGDatePickerModeDateHourMinute || _datePickerMode == PGDatePickerModeDateHourMinuteSecond || _datePickerMode == PGDatePickerModeMonthDayHourMinute || _datePickerMode == PGDatePickerModeMonthDayHourMinute || _datePickerMode == PGDatePickerModeMonthDayHourMinuteSecond || _datePickerMode == PGDatePickerModeDateAndTime) {
-        self.itemWidth = 150;
+        if (self.itemWidth < 150) {
+            self.itemWidth = 150;
+        }
     }
     else {
-        self.itemWidth = 90;
+        if (self.itemWidth < 90) {
+            self.itemWidth = 90;
+        }
     }
     
     _topLineView.frame = CGRectMake(0, 0, self.frame.size.width, 0.5);
