@@ -16,7 +16,6 @@
 @property (strong, nonatomic) UIView *topLineView;
 @property (strong, nonatomic) UIImageView *separationLineView;
 @property (nonatomic, assign) BOOL isSubViewLayouted;
-@property (nonatomic, assign) CGFloat itemWidth;
 
 @property (strong, nonatomic) NSString *strStartTime;
 @property (strong, nonatomic) NSString *strEndTime;
@@ -30,7 +29,7 @@
 {
     self = [super init];
     if (self) {
-        self.itemWidth = 86;
+        self.itemWidth = 90;
         self.selectTag = -1;
     }
     return self;
@@ -40,7 +39,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.itemWidth = 86;
+        self.itemWidth = 90;
     }
     return self;
 }
@@ -98,7 +97,7 @@
         self.itemWidth = 150;
     }
     else {
-        self.itemWidth = 86;
+        self.itemWidth = 90;
     }
     
     _topLineView.frame = CGRectMake(0, 0, self.frame.size.width, 0.5);

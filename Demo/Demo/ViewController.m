@@ -154,7 +154,7 @@
     datePickManager.headerViewBackgroundColor = [UIColor whiteColor];
     PGDatePicker *datePicker = datePickManager.datePicker;
     datePicker.datePickerType = PGDatePickerTypeVertical;
-    datePicker.datePickerMode = PGDatePickerModeDateHourMinuteSecond;
+    datePicker.datePickerMode = PGDatePickerModeDate;
 //    //设置选中行的字体颜色
 //    datePicker.textColorOfSelectedRow = [UIColor redColor];
     [self presentViewController:datePickManager animated:false completion:nil];

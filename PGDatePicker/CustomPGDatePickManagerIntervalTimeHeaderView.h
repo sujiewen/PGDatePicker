@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 //0:开始时间,1:结束时间
 @property (nonatomic, assign) NSInteger selectTag;
 
+@property (nonatomic, assign) CGFloat itemWidth;
+
 //开始时间
 @property (strong, nonatomic) UIButton *startTimeButton;
 @property (strong, nonatomic) UIView *startTimeLineView;
